@@ -34,8 +34,9 @@ public class ElasticConfigration {
     @PostConstruct
     public void initialize() throws Exception {
         Settings esSettings = Settings.builder()
+                .put("client.type", "transport")
                 .put("cluster.name", esClusterName)
-                .put("client.transport.sniff", true).build();
+                .put("client.transport.sniff", false).build();
         client = new PreBuiltTransportClient(esSettings);
 
         String[] esHosts = esHost.trim().split(",");

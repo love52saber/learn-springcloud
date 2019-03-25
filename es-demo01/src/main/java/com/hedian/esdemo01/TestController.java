@@ -30,8 +30,8 @@ public class TestController {
     private List<String> getIkAnalyzeSearchTerms(String searchContent) {
         // 调用 IK 分词分词
         AnalyzeRequestBuilder ikRequest = new AnalyzeRequestBuilder(elasticsearchTemplate.getClient(),
-                AnalyzeAction.INSTANCE,"indexName",searchContent);
-        ikRequest.setTokenizer("ik");
+                AnalyzeAction.INSTANCE,"node-1",searchContent);
+        ikRequest.setTokenizer("ik_smart");
         List<AnalyzeResponse.AnalyzeToken> ikTokenList = ikRequest.execute().actionGet().getTokens();
 
         // 循环赋值
